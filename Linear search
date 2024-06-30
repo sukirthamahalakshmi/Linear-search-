@@ -1,0 +1,61 @@
+def display_menu():
+    print("Dictionary Program")
+    print("1. Look up a word")
+    print("2. Add a new word")
+    print("3. Delete a word")
+    print("4. Display all words")
+    print("5. Exit")
+
+def look_up_word(dictionary):
+    word = input("Enter the word to look up: ").strip()
+    if word in dictionary:
+        print(f"The meaning of '{word}' is: {dictionary[word]}")
+    else:
+        print(f"'{word}' not found in the dictionary.")
+
+def add_word(dictionary):
+    word = input("Enter the word to add: ").strip()
+    if word in dictionary:
+        print(f"'{word}' already exists in the dictionary with the meaning: {dictionary[word]}")
+    else:
+        meaning = input(f"Enter the meaning of '{word}': ").strip()
+        dictionary[word] = meaning
+        print(f"'{word}' has been added to the dictionary.")
+
+def delete_word(dictionary):
+    word = input("Enter the word to delete: ").strip()
+    if word in dictionary:
+        del dictionary[word]
+        print(f"'{word}' has been deleted from the dictionary.")
+    else:
+        print(f"'{word}' not found in the dictionary.")
+
+def display_all_words(dictionary):
+    if dictionary:
+        print("Dictionary contents:")
+        for word, meaning in dictionary.items():
+            print(f"{word}: {meaning}")
+    else:
+        print("The dictionary is empty.")
+
+def main():
+    dictionary = {}
+    while True:
+        display_menu()
+        choice = input("Enter your choice: ").strip()
+        if choice == '1':
+            look_up_word(dictionary)
+        elif choice == '2':
+            add_word(dictionary)
+        elif choice == '3':
+            delete_word(dictionary)
+        elif choice == '4':
+            display_all_words(dictionary)
+        elif choice == '5':
+            print("Exiting the program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
